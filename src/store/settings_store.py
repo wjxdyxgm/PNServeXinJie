@@ -3,6 +3,8 @@ Application settings store.
 """
 from PyQt6.QtCore import QObject, pyqtSignal, pyqtSlot
 
+from src.common.logging_utils import debug_log
+
 
 # 扭力 / 伺服距离 OK 上下限参数的 config key 列表
 LIMIT_SETTING_KEYS = [
@@ -243,7 +245,7 @@ class SettingsStore(QObject):
 
     def write_plc(self, store_path: str, value):
         """请求 PLCBridge 将 value 写入 PLC。"""
-        print(f"[Settings] writeRequested emit: {store_path}={value}")
+        debug_log(f"[Settings] writeRequested emit: {store_path}={value}")
         self.writeRequested.emit(store_path, value)
 
     # ---------- PLC 回读 ----------

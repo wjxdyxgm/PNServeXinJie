@@ -7,7 +7,7 @@ from src.plc.binding_config import READ_BINDINGS, WRITE_BINDINGS
 from src.store.gas_store import GasStore
 from src.store.manual_store import ManualStore
 from src.store.settings_store import SettingsStore
-from src.view.manual_page import BUTTON_BINDING_MAP
+from src.view.manual.button_bindings import BUTTON_BINDING_MAP
 
 
 @dataclass

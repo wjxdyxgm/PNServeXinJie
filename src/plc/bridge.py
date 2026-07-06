@@ -6,6 +6,7 @@ import struct
 from PyQt6.QtCore import QMutex, QMutexLocker, QThread, pyqtSignal
 from snap7.util import get_bool
 
+from src.common.logging_utils import debug_log
 from src.plc.binding import PLCBinding
 from src.plc.binding_config import READ_BINDINGS, WRITE_BINDINGS
 from src.plc.driver import PLCDriver
@@ -152,7 +153,7 @@ class PLCBridge(QThread):
         return None
 
     def _on_write_requested(self, store_path: str, value):
-        print(f"[PLCBridge] 收到写入请求: {store_path}={value}")
+        debug_log(f"[PLCBridge] 收到写入请求: {store_path}={value}")
         binding = self._write_index.get(store_path)
         if not binding:
             self.errorOccurred.emit(f"missing binding for {store_path}")
@@ -162,7 +163,7 @@ class PLCBridge(QThread):
             with QMutexLocker(self._mutex):
                 normalized = self._write_value(binding, value)
                 self._prime_read_cache(store_path, normalized)
-            print(f"[PLCBridge] 写入成功: {binding.address_str}={value}")
+            debug_log(f"[PLCBridge] 写入成功: {binding.address_str}={value}")
             return True
         except Exception as exc:
             self.errorOccurred.emit(f"write {binding.address_str} failed: {exc}")
