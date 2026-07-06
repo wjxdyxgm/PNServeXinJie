@@ -1,0 +1,7 @@
+PyQt6==6.11.0
+pyqtgraph==0.14.0
+python-snap7==3.0.0
+openpyxl==3.1.5
+pyserial==3.5
+Pinyin2Hanzi==0.1.1
+pyinstaller==6.20.0

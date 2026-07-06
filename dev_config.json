@@ -1,0 +1,9 @@
+{
+    "connection_type": "ethernet",
+    "ethernet": {
+        "plc_ip": "192.168.2.10"
+    },
+    "wifi": {
+        "plc_ip": "192.168.2.10"
+    }
+}
